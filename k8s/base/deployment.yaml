@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-svc
+  labels:
+    app: hello-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-svc
+  template:
+    metadata:
+      labels:
+        app: hello-svc
+    spec:
+      containers:
+        - name: hello-svc
+          image: hello-svc:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: hello-svc-config
+          securityContext:
+            privileged: true # TODO remove, was debugging networking

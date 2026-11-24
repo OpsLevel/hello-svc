@@ -1,8 +1,9 @@
-FROM golang:1.24 AS builder
+FROM golang
 
-WORKDIR /go/src/hello
-COPY ./main.go /go/src/hello
+WORKDIR /app
+COPY . .
 
-RUN go build -o /usr/local/bin/hello ./main.go && chmod +x /usr/local/bin/hello
+RUN go build -o /usr/local/bin/hello-svc .
 
-CMD ["/usr/local/bin/hello"]
+EXPOSE 8080
+CMD ["hello-svc"]

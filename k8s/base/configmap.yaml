@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-svc-config
+data:
+  ENV: development
+  DB_HOST: localhost
+  DB_PASSWORD: hs-db-7Rq2vLx9Wk4pTz
